@@ -5,21 +5,17 @@ import { RegisterComponent } from './user/register/register.component';
 import { PageNotFoundComponent } from './wildNavigate/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-    {
-        path: '',   component: UserComponent,  // Default route
-        children: [  
-            // Child routes for login and register
-          {
-            path: 'login', component: LoginComponent
-          },
-          {
-            path: 'register', component: RegisterComponent
-          },
-        ]
-    },
-    {
-        path: '**', component: PageNotFoundComponent    // Wildcard route for a 404 page
-    }
-    
-
+  { path: '', redirectTo: '/signin', pathMatch: 'full' },
+  {
+    path: '',
+    component: UserComponent,
+    children: [
+      { path: 'signup', component: RegisterComponent },
+      { path: 'signin', component: LoginComponent },
+    ],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent, // Wildcard route for a 404 page
+  },
 ];
