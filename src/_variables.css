@@ -1,0 +1,47 @@
+
+ 
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+:root {
+    --primary: #007bff;
+    --font-family-base: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Corrected CSS selectors */
+.table * {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+.table-sm * {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+.table-bordered * {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+.table-borderless * {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+.form-floating label {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+.btn-group + .btn {
+    /* Your styles here */
+    background-color: #f8f9fa;
+}
+
+/* Your global styles can go here after Bootstrap is imported. */
