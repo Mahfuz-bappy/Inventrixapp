@@ -11,7 +11,10 @@
   </div>
 </div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="row mb-3">  <div class="col-md-6"> <div class="mb-1">  <input
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <div class="mb-1">
+        <input
           class="form-control bg-body-secondary"
           placeholder="First Name"
           formControlName="firstname"
@@ -27,7 +30,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6"> <div class="mb-6">  <input
+    <div class="col-md-6">
+      <div class="mb-6">
+        <input
           class="form-control bg-body-secondary"
           placeholder="Last Name"
           formControlName="lastname"
@@ -43,9 +48,108 @@
         </div>
       </div>
     </div>
-  </div>  <div class="mb-3">  <input
+  </div>
+  <div class="mb-3">
+    <ng-select
+      id="country"
+      [items]="countries"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Select Country"
+      formControlName="country"
+      [clearable]="false"
+      [searchable]="true"
+    >
+    </ng-select>
+    <div
+      *ngIf="form.get('country')?.invalid && form.get('country')?.touched"
+      class="error-message"
+    >
+      Country is required.
+    </div>
+  </div>
+
+  <div class="row mb-3">  <div class="col-md-6">  <ng-select
+        id="state"
+        [items]="filteredStates"
+        bindLabel="name"
+        bindValue="id"
+        placeholder="Select State"
+        formControlName="state"
+        [loading]="loadingStates"
+        [clearable]="true"
+        [searchable]="true"
+        [disabled]="!form.get('country')?.value"
+      >
+      </ng-select>
+      <div
+        *ngIf="form.get('state')?.invalid && form.get('state')?.touched"
+        class="error-message"
+      >
+        State is required.
+      </div>
+    </div>
+    <div class="col-md-6">  <ng-select
+        id="city"
+        [items]="filteredCities"
+        bindLabel="name"
+        bindValue="id"
+        placeholder="Select City"
+        formControlName="city"
+        [loading]="loadingCities"
+        [clearable]="true"
+        [searchable]="true"
+        [disabled]="!form.get('state')?.value"
+      >
+      </ng-select>
+      <div
+        *ngIf="form.get('city')?.invalid && form.get('city')?.touched"
+        class="error-message"
+      >
+        City is required.
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <ng-select
+      id="subscriptionType"
+      [items]="subscriptionTypes"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Select Subscription Type"
+      formControlName="subscriptionType"
+      [clearable]="false"
+      [searchable]="false"  >
+    </ng-select>
+    <div
+      *ngIf="form.get('subscriptionType')?.invalid && form.get('subscriptionType')?.touched"
+      class="error-message"
+    >
+      Subscription Type is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input
       class="form-control bg-body-secondary"
-      placeholder="Full Name"
+      placeholder="Business Name"
+      formControlName="businessName"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('businessName') &&
+        form.controls.fullName.hasError('required')
+      "
+    >
+      Please enter your shop location.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Shop Location"
       formControlName="fullName"
     />
     <div
@@ -55,7 +159,23 @@
         form.controls.fullName.hasError('required')
       "
     >
-      Please enter your full name.
+      Please enter your shop location.
+    </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Phone No"
+      formControlName="phoneNo"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('phoneNo') &&
+        form.controls.fullName.hasError('required')
+      "
+    >
+      Please enter your Phone No.
     </div>
   </div>
   <div class="mb-3">
@@ -103,46 +223,21 @@
       Passwords doesn't match.
     </div>
   </div>
-
   <div class="mb-3">
     <ng-select
-      id="country"
-      [items]="countries"
+      id="referenceBy"
+      [items]="referenceByOptions"
       bindLabel="name"
       bindValue="id"
-      placeholder="Select Country"
-      formControlName="country"
-      [clearable]="false"
-      [searchable]="true"
-    >
+      placeholder="How did you hear about us?"
+      formControlName="referenceBy"
+      [clearable]="true"   [searchable]="false"  >
     </ng-select>
     <div
-      *ngIf="form.get('country')?.invalid && form.get('country')?.touched"
+      *ngIf="form.get('referenceBy')?.invalid && form.get('referenceBy')?.touched"
       class="error-message"
     >
-      Country is required.
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <ng-select
-      id="state"
-      [items]="filteredStates"
-      bindLabel="name"
-      bindValue="id"
-      placeholder="Select State"
-      formControlName="state"
-      [loading]="loadingStates"
-      [clearable]="true"
-      [searchable]="true"
-      [disabled]="!form.get('country')?.value"
-    >
-    </ng-select>
-    <div
-      *ngIf="form.get('state')?.invalid && form.get('state')?.touched"
-      class="error-message"
-    >
-      State is required.
+      Reference By is required.
     </div>
   </div>
 

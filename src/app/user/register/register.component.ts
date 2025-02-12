@@ -26,6 +26,12 @@ interface State {
   countryId: string; // ID of the country to which this state belongs
   name: string; // Display name of the state (e.g., 'California', 'New York')
 }
+
+interface City {
+  id: string;
+  stateId: string;
+  name: string;
+}
 //#endregion
 
 @Component({
@@ -55,6 +61,37 @@ export class RegisterComponent implements OnInit {
   ];
   filteredStates: State[] = []; // Array to hold states filtered based on the selected country
   loadingStates = false;
+
+  cities: City[] = [
+    { id: 'LA_CA_USA', stateId: 'CA_USA', name: 'Los Angeles' },
+    { id: 'SF_CA_USA', stateId: 'CA_USA', name: 'San Francisco' },
+    { id: 'NY_NY_USA', stateId: 'NY_USA', name: 'New York City' },
+    { id: 'BUF_NY_USA', stateId: 'NY_USA', name: 'Buffalo' },
+    { id: 'TOR_ON_CAN', stateId: 'ON_CAN', name: 'Toronto' },
+    { id: 'OTT_ON_CAN', stateId: 'ON_CAN', name: 'Ottawa' },
+    { id: 'MTR_QC_CAN', stateId: 'QC_CAN', name: 'Montreal' },
+    { id: 'QUE_QC_CAN', stateId: 'QC_CAN', name: 'Quebec City' },
+    { id: 'LDN_ENG_UK', stateId: 'ENG_UK', name: 'London' },
+    { id: 'MAN_ENG_UK', stateId: 'ENG_UK', name: 'Manchester' },
+    { id: 'EDI_SCT_UK', stateId: 'SCT_UK', name: 'Edinburgh' },
+    { id: 'GLW_SCT_UK', stateId: 'SCT_UK', name: 'Glasgow' },
+  ];
+  filteredCities: City[] = [];
+  loadingCities = false;
+
+
+  subscriptionTypes = [
+    { id: 'monthly', name: 'Monthly' },
+    { id: 'yearly', name: 'Yearly' },
+    { id: 'lifetime', name: 'Lifetime' },
+  ];
+
+  referenceByOptions = [
+    { id: 'friend', name: 'Friend' },
+    { id: 'advertisement', name: 'Advertisement' },
+    { id: 'onlineSearch', name: 'Online Search' },
+    { id: 'other', name: 'Other' },
+  ];
 
   //#region
   constructor(
@@ -93,8 +130,16 @@ export class RegisterComponent implements OnInit {
           ],
         ],
         confirmPassword: [''],
-        country: ['', Validators.required], // FormControl for Country, required validation
-        state: [{ value: '', disabled: true }, Validators.required], // FormControl for State, required validation (initially will be empty until country selected)
+        country: [null, Validators.required], // FormControl for Country, required validation
+        state: [{ value: null, disabled: true }, Validators.required], // FormControl for State, required validation (initially will be empty until country selected)
+        city: [{ value: null, disabled: true }, Validators.required],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        phoneNo: ['', Validators.required],
+        businessName: ['', Validators.required],
+        subscriptionType: [null, Validators.required], // FormControl for Subscription Type
+        referenceBy: [null, Validators.required],
+        
       },
       { validators: this.passwordMatchValidator }
     );
@@ -124,10 +169,40 @@ export class RegisterComponent implements OnInit {
         this.loadingStates = false; // Reset loading state to false once states are loaded
         this.form.get('state')?.reset(''); // Reset the state dropdown when the country changes (optional - you might want to keep the state selected if it is still valid for the new country)
       });
+
+
+
+
+      //subscribe to value changes of the 'state' FormControl to implement cascading dropdown logic
+      this.form
+      .get('state')
+      ?.valueChanges.pipe(
+        switchMap((stateId: string) => {
+          this.filteredCities = []; // Clear previously filtered cities when state changes
+  
+          if (stateId) {
+            this.loadingCities = true; // Set loading state for cities
+            this.form.get('city')?.enable(); // Enable city dropdown when state is selected
+            return of(this.getCitiesForState(stateId)).pipe(delay(500)); // Simulate city data fetch
+          } else {
+            return of([]); // If no state selected, return empty city array
+          }
+        })
+      )
+      .subscribe((cities: City[]) => {
+        this.filteredCities = cities; // Update filteredCities with fetched cities
+        this.loadingCities = false; // Reset city loading state
+        this.form.get('city')?.reset(''); // Reset city dropdown (optional)
+      });
   }
   // Function to filter states based on the selected countryId
   getStatesForCountry(countryId: string): State[] {
     return this.states.filter((state) => state.countryId === countryId); // Filter the 'states' array to only include states that match the given countryId
+  }
+
+   // Function to filter cities based on the selected stateId
+   getCitiesForState(stateId: string): City[] {
+    return this.cities.filter((city) => city.stateId === stateId);
   }
 
   hasDisplayableError(controlName: string): Boolean {
@@ -140,6 +215,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true;
+    console.log('Form Value:', this.form.value);
     if (this.form.valid) {
       console.log('Form Value:', this.form.value); // Log the form values to the console (replace with actual submission logic)
     }
