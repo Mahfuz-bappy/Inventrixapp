@@ -12,28 +12,12 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FirstKeyPipe } from '../../shared/pipes/first-key.pipe';
 import { of } from 'rxjs';
-import { switchMap, delay } from 'rxjs/operators';
+import { switchMap, delay, tap } from 'rxjs/operators';
 import {  NgSelectModule } from '@ng-select/ng-select';
-//#region country and state interfaces
-// Define interfaces for Country and State objects to provide type safety
-interface Country {
-  id: string; // Unique identifier for the country (e.g., 'USA', 'CAN')
-  name: string; // Display name of the country (e.g., 'United States', 'Canada')
-}
-
-interface State {
-  id: string; // Unique identifier for the state (e.g., 'CA_USA', 'NY_USA')
-  countryId: string; // ID of the country to which this state belongs
-  name: string; // Display name of the state (e.g., 'California', 'New York')
-}
-
-interface City {
-  id: string;
-  stateId: string;
-  name: string;
-}
-//#endregion
-
+import { CountryService } from '../../shared/services/country.service';
+import { Country,State,City } from '../../shared/interfaces/country.interface';
+ 
+ 
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule, CommonModule, FirstKeyPipe, RouterLink,NgSelectModule],
@@ -42,43 +26,47 @@ interface City {
 })
 export class RegisterComponent implements OnInit {
   //#region country and state initialization and data
-  countries: Country[] = [
-    // Static array of countries (in real app, fetch from API)
-    { id: 'USA', name: 'United States' },
-    { id: 'CAN', name: 'Canada' },
-    { id: 'UK', name: 'United Kingdom' },
-    // Add more countries as needed
-  ];
-  states: State[] = [
-    // Static array of states (in real app, fetch from API - often based on country selection)
-    { id: 'CA_USA', countryId: 'USA', name: 'California' },
-    { id: 'NY_USA', countryId: 'USA', name: 'New York' },
-    { id: 'ON_CAN', countryId: 'CAN', name: 'Ontario' },
-    { id: 'QC_CAN', countryId: 'CAN', name: 'Quebec' },
-    { id: 'ENG_UK', countryId: 'UK', name: 'England' },
-    { id: 'SCT_UK', countryId: 'UK', name: 'Scotland' },
-    // Add more states for each country
-  ];
-  filteredStates: State[] = []; // Array to hold states filtered based on the selected country
-  loadingStates = false;
+  // countries: Country[] = [
+  //   // Static array of countries (in real app, fetch from API)
+  //   { id: 'USA', name: 'United States' },
+  //   { id: 'CAN', name: 'Canada' },
+  //   { id: 'UK', name: 'United Kingdom' },
+  //   // Add more countries as needed
+  // ];
 
-  cities: City[] = [
-    { id: 'LA_CA_USA', stateId: 'CA_USA', name: 'Los Angeles' },
-    { id: 'SF_CA_USA', stateId: 'CA_USA', name: 'San Francisco' },
-    { id: 'NY_NY_USA', stateId: 'NY_USA', name: 'New York City' },
-    { id: 'BUF_NY_USA', stateId: 'NY_USA', name: 'Buffalo' },
-    { id: 'TOR_ON_CAN', stateId: 'ON_CAN', name: 'Toronto' },
-    { id: 'OTT_ON_CAN', stateId: 'ON_CAN', name: 'Ottawa' },
-    { id: 'MTR_QC_CAN', stateId: 'QC_CAN', name: 'Montreal' },
-    { id: 'QUE_QC_CAN', stateId: 'QC_CAN', name: 'Quebec City' },
-    { id: 'LDN_ENG_UK', stateId: 'ENG_UK', name: 'London' },
-    { id: 'MAN_ENG_UK', stateId: 'ENG_UK', name: 'Manchester' },
-    { id: 'EDI_SCT_UK', stateId: 'SCT_UK', name: 'Edinburgh' },
-    { id: 'GLW_SCT_UK', stateId: 'SCT_UK', name: 'Glasgow' },
-  ];
+  // states: State[] = [
+  //   // Static array of states (in real app, fetch from API - often based on country selection)
+  //   { id: 'CA_USA', countryId: 'USA', name: 'California' },
+  //   { id: 'NY_USA', countryId: 'USA', name: 'New York' },
+  //   { id: 'ON_CAN', countryId: 'CAN', name: 'Ontario' },
+  //   { id: 'QC_CAN', countryId: 'CAN', name: 'Quebec' },
+  //   { id: 'ENG_UK', countryId: 'UK', name: 'England' },
+  //   { id: 'SCT_UK', countryId: 'UK', name: 'Scotland' },
+  //   // Add more states for each country
+  // ];
+
+
+  // cities: City[] = [
+  //   { id: 'LA_CA_USA', stateId: 'CA_USA', name: 'Los Angeles' },
+  //   { id: 'SF_CA_USA', stateId: 'CA_USA', name: 'San Francisco' },
+  //   { id: 'NY_NY_USA', stateId: 'NY_USA', name: 'New York City' },
+  //   { id: 'BUF_NY_USA', stateId: 'NY_USA', name: 'Buffalo' },
+  //   { id: 'TOR_ON_CAN', stateId: 'ON_CAN', name: 'Toronto' },
+  //   { id: 'OTT_ON_CAN', stateId: 'ON_CAN', name: 'Ottawa' },
+  //   { id: 'MTR_QC_CAN', stateId: 'QC_CAN', name: 'Montreal' },
+  //   { id: 'QUE_QC_CAN', stateId: 'QC_CAN', name: 'Quebec City' },
+  //   { id: 'LDN_ENG_UK', stateId: 'ENG_UK', name: 'London' },
+  //   { id: 'MAN_ENG_UK', stateId: 'ENG_UK', name: 'Manchester' },
+  //   { id: 'EDI_SCT_UK', stateId: 'SCT_UK', name: 'Edinburgh' },
+  //   { id: 'GLW_SCT_UK', stateId: 'SCT_UK', name: 'Glasgow' },
+  // ];
+  // filteredCities: City[] = [];
+  // loadingCities = false;
+  countries: Country[] = []; // Initialize as empty array - data will be fetcheds
+  filteredStates: State[] = []; // Will now hold State interface
   filteredCities: City[] = [];
+  loadingStates = false;
   loadingCities = false;
-
 
   subscriptionTypes = [
     { id: 'monthly', name: 'Monthly' },
@@ -98,7 +86,8 @@ export class RegisterComponent implements OnInit {
     public formBuilder: FormBuilder,
     private service: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private countryService: CountryService // Inject CountryService
   ) {}
 
   isSubmitted: boolean = false;
@@ -117,6 +106,14 @@ export class RegisterComponent implements OnInit {
   };
 
   ngOnInit() {
+
+ // Fetch countries from the service when the component initializes
+ this.countryService.getCountries().subscribe((countriesFromApi: Country[]) => {
+  this.countries = countriesFromApi; // Assign API data to the countries array
+console.log(countriesFromApi);
+});
+
+
     this.form = this.formBuilder.group(
       {
         fullName: ['', Validators.required],
@@ -148,16 +145,23 @@ export class RegisterComponent implements OnInit {
     this.form
       .get('country')
       ?.valueChanges.pipe(
+        tap(() => {
+          this.form.get('state')?.reset(''); // Reset state dropdown when country changes
+          this.form.get('state')?.disable(); // Disable state dropdown until states are loaded
+          this.filteredStates = [];          // Clear previous states
+          this.filteredCities = [];          // Also clear cities when country changes (optional, if city depends on state and country)
+          this.form.get('city')?.reset('');   // Reset city dropdown
+          this.form.get('city')?.disable();  // Disable city dropdown
+        }),
         // switchMap: When a new country is selected, it cancels any previous state loading and starts a new one.
         switchMap((countryId:string) => {
           this.filteredStates = []; // Clear previously filtered states when country changes
 
           if (countryId) {
-            // If a country is selected (countryId is not null/undefined)
-            this.loadingStates = true; // Set loading state to true, can be used to show a loading indicator
-            this.form.get('state')?.enable(); // Enable the state dropdown when a country is selected
-            // Simulate an API call delay using 'of' and 'delay' (replace with actual API call in real application)
-            return of(this.getStatesForCountry(countryId)).pipe(delay(500)); // Simulate asynchronous data fetch
+            this.loadingStates = true;
+            this.form.get('state')?.enable(); // Enable state dropdown when country is selected
+            // Fetch states using StateService, passing countryId as query parameter
+            return this.countryService.getStates(countryId).pipe(delay(500)); 
           } else {
             return of([]); // If no country selected, return an empty array of states (no states to display)
           }
@@ -165,9 +169,8 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe((states:State[]) => {
         // Subscribe to the Observable returned by switchMap to handle the emitted states
-        this.filteredStates = states; // Update filteredStates array with the states fetched for the selected country
-        this.loadingStates = false; // Reset loading state to false once states are loaded
-        this.form.get('state')?.reset(''); // Reset the state dropdown when the country changes (optional - you might want to keep the state selected if it is still valid for the new country)
+        this.filteredStates = states; // Update filteredStates with fetched states (now of type State[])
+        this.loadingStates = false;// Reset the state dropdown when the country changes (optional - you might want to keep the state selected if it is still valid for the new country)
       });
 
 
@@ -177,33 +180,36 @@ export class RegisterComponent implements OnInit {
       this.form
       .get('state')
       ?.valueChanges.pipe(
-        switchMap((stateId: string) => {
-          this.filteredCities = []; // Clear previously filtered cities when state changes
-  
+        tap(() => {
+          this.form.get('city')?.reset(''); // Reset city when state changes
+          this.form.get('city')?.disable(); // Disable city dropdown
+          this.filteredCities = [];          // Clear previous cities
+        }),
+        switchMap((stateId: number) => {
+          this.filteredCities = [];
           if (stateId) {
-            this.loadingCities = true; // Set loading state for cities
-            this.form.get('city')?.enable(); // Enable city dropdown when state is selected
-            return of(this.getCitiesForState(stateId)).pipe(delay(500)); // Simulate city data fetch
+            this.loadingCities = true;
+            this.form.get('city')?.enable();
+            return this.countryService.getCities(stateId).pipe(delay(500));
           } else {
-            return of([]); // If no state selected, return empty city array
+            return of([]);
           }
         })
       )
       .subscribe((cities: City[]) => {
-        this.filteredCities = cities; // Update filteredCities with fetched cities
-        this.loadingCities = false; // Reset city loading state
-        this.form.get('city')?.reset(''); // Reset city dropdown (optional)
+        this.filteredCities = cities; // Update filteredCities with fetched cities (now of type City[])
+        this.loadingCities = false;
       });
   }
   // Function to filter states based on the selected countryId
-  getStatesForCountry(countryId: string): State[] {
-    return this.states.filter((state) => state.countryId === countryId); // Filter the 'states' array to only include states that match the given countryId
-  }
+  // getStatesForCountry(countryId: string): State[] {
+  //   return this.states.filter((state) => state.countryId === countryId); // Filter the 'states' array to only include states that match the given countryId
+  // }
 
    // Function to filter cities based on the selected stateId
-   getCitiesForState(stateId: string): City[] {
-    return this.cities.filter((city) => city.stateId === stateId);
-  }
+  //  getCitiesForState(stateId: string): City[] {
+  //  // return this.cities.filter((city) => city.stateId === stateId);
+  // }
 
   hasDisplayableError(controlName: string): Boolean {
     const control = this.form.get(controlName);

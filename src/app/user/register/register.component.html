@@ -1,23 +1,21 @@
-<div class="mb-4">
-  <h2 class="text-muted">Welcome!</h2>
-  <h3 class="text-dark">Let's Get You Setup</h3>
-  <div>
+<div class="mb-2">  <h2 class="text-muted" style="font-size: 1.1rem; margin-bottom: 0.2rem;">Welcome!</h2>
+  <h3 class="text-dark" style="font-size: 1.0rem; margin-bottom: 0.2rem;">Let's Get You Setup</h3>
+  <div style="font-size: 0.9rem;">
     Already have an account?
     <a
       routerLink="/signin"
       class="text-decoration-none fw-medium text-primary d-inlin-block"
+      style="font-size: 0.9rem;"
       >Sign in</a
     >
   </div>
 </div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <div class="mb-1">
-        <input
-          class="form-control bg-body-secondary"
+  <div class="row mb-1">  <div class="col-md-6">  <div class="mb-0">  <input
+          class="form-control bg-body-secondary form-control-sm"
           placeholder="First Name"
           formControlName="firstname"
+          style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
         />
         <div
           class="error-feedback"
@@ -30,12 +28,11 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="mb-6">
-        <input
-          class="form-control bg-body-secondary"
+    <div class="col-md-6">  <div class="mb-1">  <input
+          class="form-control bg-body-secondary form-control-sm"
           placeholder="Last Name"
           formControlName="lastname"
+          style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
         />
         <div
           class="error-feedback"
@@ -49,8 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="mb-3">
-    <ng-select
+  <div class="mb-1">  <ng-select
       id="country"
       [items]="countries"
       bindLabel="name"
@@ -59,8 +55,9 @@
       formControlName="country"
       [clearable]="false"
       [searchable]="true"
-    >
-    </ng-select>
+      size="sm"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+    >  </ng-select>
     <div
       *ngIf="form.get('country')?.invalid && form.get('country')?.touched"
       class="error-message"
@@ -69,7 +66,7 @@
     </div>
   </div>
 
-  <div class="row mb-3">  <div class="col-md-6">  <ng-select
+  <div class="row mb-1">  <div class="col-md-6">  <ng-select
         id="state"
         [items]="filteredStates"
         bindLabel="name"
@@ -80,8 +77,9 @@
         [clearable]="true"
         [searchable]="true"
         [disabled]="!form.get('country')?.value"
-      >
-      </ng-select>
+        size="sm"
+        style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+      >  </ng-select>
       <div
         *ngIf="form.get('state')?.invalid && form.get('state')?.touched"
         class="error-message"
@@ -100,8 +98,9 @@
         [clearable]="true"
         [searchable]="true"
         [disabled]="!form.get('state')?.value"
-      >
-      </ng-select>
+        size="sm"
+        style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+      >  </ng-select>
       <div
         *ngIf="form.get('city')?.invalid && form.get('city')?.touched"
         class="error-message"
@@ -110,8 +109,7 @@
       </div>
     </div>
   </div>
-  <div class="mb-3">
-    <ng-select
+  <div class="mb-1">  <ng-select
       id="subscriptionType"
       [items]="subscriptionTypes"
       bindLabel="name"
@@ -119,8 +117,10 @@
       placeholder="Select Subscription Type"
       formControlName="subscriptionType"
       [clearable]="false"
-      [searchable]="false"  >
-    </ng-select>
+      [searchable]="false"
+      size="sm"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+    >  </ng-select>
     <div
       *ngIf="form.get('subscriptionType')?.invalid && form.get('subscriptionType')?.touched"
       class="error-message"
@@ -129,11 +129,12 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Business Name"
       formControlName="businessName"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div
       class="error-feedback"
@@ -146,11 +147,12 @@
     </div>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Shop Location"
       formControlName="fullName"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div
       class="error-feedback"
@@ -162,11 +164,12 @@
       Please enter your shop location.
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Phone No"
       formControlName="phoneNo"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div
       class="error-feedback"
@@ -178,11 +181,12 @@
       Please enter your Phone No.
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Email"
       formControlName="email"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div class="error-feedback" *ngIf="hasDisplayableError('email')">
       <div *ngIf="form.controls.email.hasError('required')">
@@ -193,11 +197,12 @@
       </div>
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Password"
       formControlName="password"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div class="error-feedback" *ngIf="hasDisplayableError('password')">
       <ng-container [ngSwitch]="form.controls.password.errors | firstKey">
@@ -207,11 +212,12 @@
       </ng-container>
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <input
-      class="form-control bg-body-secondary"
+      class="form-control bg-body-secondary form-control-sm"
       placeholder="Confirm Password"
       formControlName="confirmPassword"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
     />
     <div
       class="error-feedback"
@@ -223,7 +229,7 @@
       Passwords doesn't match.
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-1">
     <ng-select
       id="referenceBy"
       [items]="referenceByOptions"
@@ -231,7 +237,11 @@
       bindValue="id"
       placeholder="How did you hear about us?"
       formControlName="referenceBy"
-      [clearable]="true"   [searchable]="false"  >
+      [clearable]="true"
+      [searchable]="false"
+      size="sm"
+      style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+    >
     </ng-select>
     <div
       *ngIf="form.get('referenceBy')?.invalid && form.get('referenceBy')?.touched"
@@ -241,8 +251,8 @@
     </div>
   </div>
 
-  <div class="mt-4">
-    <button type="submit" class="btn btn-success w-100 rounded-3">
+  <div class="mt-1">
+    <button type="submit" class="btn btn-success w-100 rounded-3 btn-sm" style="font-size: 0.9rem; padding-top: 0.2rem; padding-bottom: 0.2rem;">
       Register
     </button>
   </div>
