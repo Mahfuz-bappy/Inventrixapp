@@ -1,56 +1,154 @@
 <div class="mb-4">
-    <h2 class="text-success">
-      Sign up
-    </h2>
-    <div>Already have an account?
-      <a routerLink="/signin" class="text-decoration-none fw-medium text-success d-inlin-block">Sign in</a>
+  <h2 class="text-muted">Welcome!</h2>
+  <h3 class="text-dark">Let's Get You Setup</h3>
+  <div>
+    Already have an account?
+    <a
+      routerLink="/signin"
+      class="text-decoration-none fw-medium text-primary d-inlin-block"
+      >Sign in</a
+    >
+  </div>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">  <div class="col-md-6"> <div class="mb-1">  <input
+          class="form-control bg-body-secondary"
+          placeholder="First Name"
+          formControlName="firstname"
+        />
+        <div
+          class="error-feedback"
+          *ngIf="
+            hasDisplayableError('firstname') &&
+            form.controls.fullName.hasError('required')
+          "
+        >
+          Please enter your first name.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"> <div class="mb-6">  <input
+          class="form-control bg-body-secondary"
+          placeholder="Last Name"
+          formControlName="lastname"
+        />
+        <div
+          class="error-feedback"
+          *ngIf="
+            hasDisplayableError('lastname') &&
+            form.controls.fullName.hasError('required')
+          "
+        >
+          Please enter your last name.
+        </div>
+      </div>
+    </div>
+  </div>  <div class="mb-3">  <input
+      class="form-control bg-body-secondary"
+      placeholder="Full Name"
+      formControlName="fullName"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('fullName') &&
+        form.controls.fullName.hasError('required')
+      "
+    >
+      Please enter your full name.
     </div>
   </div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <input class="form-control bg-body-secondary" placeholder="Full Name" formControlName="fullName">
-      <div class="error-feedback" *ngIf="hasDisplayableError('fullName') && form.controls.fullName.hasError('required')">
-        Please enter your full name.
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <div class="error-feedback" *ngIf="hasDisplayableError('email')">
+      <div *ngIf="form.controls.email.hasError('required')">
+        Please enter your email address.
+      </div>
+      <div *ngIf="form.controls.email.hasError('email')">
+        Please enter a valid email address.
       </div>
     </div>
-    <div class="mb-3">
-      <input class="form-control bg-body-secondary" placeholder="Email" formControlName="email">
-      <div class="error-feedback" *ngIf="hasDisplayableError('email')">
-        <div *ngIf="form.controls.email.hasError('required')">
-          Please enter your email address.
-        </div>
-        <div *ngIf="form.controls.email.hasError('email')">
-          Please enter a valid email address.
-        </div>
-      </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <div class="error-feedback" *ngIf="hasDisplayableError('password')">
+      <ng-container [ngSwitch]="form.controls.password.errors | firstKey">
+        <div *ngSwitchCase="'required'">Please enter your password.</div>
+        <div *ngSwitchCase="'minlength'">Atleast 6 characters required.</div>
+        <div *ngSwitchCase="'pattern'">One or more special character(s).</div>
+      </ng-container>
     </div>
-    <div class="mb-3">
-      <input class="form-control bg-body-secondary" placeholder="Password" formControlName="password">
-      <div class="error-feedback" *ngIf="hasDisplayableError('password')">
-        <ng-container [ngSwitch]="form.controls.password.errors | firstKey">
-          <div *ngSwitchCase="'required'">
-            Please enter your password.
-          </div>
-          <div *ngSwitchCase="'minlength'">
-            Atleast 6 characters required.
-          </div>
-          <div *ngSwitchCase="'pattern'">
-            One or more special character(s).
-          </div>
-        </ng-container>
-        
-      </div>
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control bg-body-secondary"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+    />
+    <div
+      class="error-feedback"
+      *ngIf="
+        hasDisplayableError('confirmPassword') &&
+        form.controls.confirmPassword.hasError('passwordMismatch')
+      "
+    >
+      Passwords doesn't match.
     </div>
-    <div class="mb-3">
-      <input class="form-control bg-body-secondary" placeholder="Confirm Password" formControlName="confirmPassword">
-      <div class="error-feedback" 
-      *ngIf="hasDisplayableError('confirmPassword') && form.controls.confirmPassword.hasError('passwordMismatch')">
-        Passwords doesn't match.
-      </div>
+  </div>
+
+  <div class="mb-3">
+    <ng-select
+      id="country"
+      [items]="countries"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Select Country"
+      formControlName="country"
+      [clearable]="false"
+      [searchable]="true"
+    >
+    </ng-select>
+    <div
+      *ngIf="form.get('country')?.invalid && form.get('country')?.touched"
+      class="error-message"
+    >
+      Country is required.
     </div>
-    <div class="mt-4">
-      <button type="submit" class="btn btn-success w-100 rounded-3">
-        Register
-      </button>
+  </div>
+
+  <div class="mb-3">
+    <ng-select
+      id="state"
+      [items]="filteredStates"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Select State"
+      formControlName="state"
+      [loading]="loadingStates"
+      [clearable]="true"
+      [searchable]="true"
+      [disabled]="!form.get('country')?.value"
+    >
+    </ng-select>
+    <div
+      *ngIf="form.get('state')?.invalid && form.get('state')?.touched"
+      class="error-message"
+    >
+      State is required.
     </div>
-  </form>
+  </div>
+
+  <div class="mt-4">
+    <button type="submit" class="btn btn-success w-100 rounded-3">
+      Register
+    </button>
+  </div>
+</form>

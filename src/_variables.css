@@ -14,34 +14,28 @@ body {
 }
 
 /* Corrected CSS selectors */
-.table * {
-    /* Your styles here */
+/* .table * {
     background-color: #f8f9fa;
-}
-
+} */
+/* 
 .table-sm * {
-    /* Your styles here */
     background-color: #f8f9fa;
 }
 
 .table-bordered * {
-    /* Your styles here */
     background-color: #f8f9fa;
 }
 
 .table-borderless * {
-    /* Your styles here */
     background-color: #f8f9fa;
 }
 
 .form-floating label {
-    /* Your styles here */
     background-color: #f8f9fa;
 }
 
 .btn-group + .btn {
-    /* Your styles here */
     background-color: #f8f9fa;
-}
+} */
 
 /* Your global styles can go here after Bootstrap is imported. */
