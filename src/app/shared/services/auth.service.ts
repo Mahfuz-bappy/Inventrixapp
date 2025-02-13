@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { TOKEN_KEY } from '../constants';
+import { REFRESH_TOKEN_KEY, TOKEN_KEY } from '../constants';
  
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthService {
     }
   
     signin(formData: any) {
-      return this.http.post(environment.apiBaseUrl + '/signin', formData);
+      return this.http.post(environment.apiBaseUrl + '/Auth/login', formData);
     }
   
     isLoggedIn() {
@@ -32,13 +32,22 @@ export class AuthService {
     saveToken(token: string) {
       localStorage.setItem(TOKEN_KEY, token)
     }
+    saveRefreshToken(token: string) {
+      localStorage.setItem(REFRESH_TOKEN_KEY, token)
+    }
   
     getToken() {
       return localStorage.getItem(TOKEN_KEY);
     }
+    getRefreshToken() {
+      return localStorage.getItem(REFRESH_TOKEN_KEY);
+    }
   
     deleteToken() {
       localStorage.removeItem(TOKEN_KEY);
+    }
+    deleteRefreshToken() {
+      localStorage.removeItem(REFRESH_TOKEN_KEY);
     }
   
     getClaims(){

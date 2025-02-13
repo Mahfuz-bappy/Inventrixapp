@@ -12,9 +12,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
-
-
   constructor(
     public formBuilder: FormBuilder,
     private service: AuthService,
@@ -29,7 +26,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     if (this.service.isLoggedIn()) {
-      this.router.navigateByUrl('/dashboard');
+      // this.router.navigateByUrl('/dashboard');
     }
   }
   isSubmitted: boolean = false;
@@ -45,11 +42,25 @@ export class LoginComponent {
 
   onSubmit() {
     this.isSubmitted = true;
+    console.log(this.form.value);
+   
     if (this.form.valid) {
-      this.service.signin(this.form.value).subscribe({
+      const formData = this.form.value;
+      const userData = {
+        userName: formData.email,
+        password: formData.password         
+      };
+
+
+
+      this.service.signin(userData).subscribe({
         next: (res: any) => {
-          this.service.saveToken(res.token);
+          console.log(res);         
+          this.service.saveToken(res.accessToken);
+          this.service.saveRefreshToken(res.refreshToken);
           this.router.navigateByUrl('/dashboard');
+
+          return;
         },
         error: err => {
           if (err.status == 400)
