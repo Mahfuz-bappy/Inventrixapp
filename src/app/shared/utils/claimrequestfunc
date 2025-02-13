@@ -1,5 +1,20 @@
-export const claimrequestfunc = {
-    adminOnly: (c: any) => c.role == "Admin",
-    adminOrTeacher: (c: any) => c.role == "Admin" || c.role == "Teacher"
+// export const claimrequestfunc = {
+//     adminOnly: (c: any) => c.role == "Admin",
+//     adminOrTeacher: (c: any) => c.role == "Admin" || c.role == "Teacher"
     
-  }
+//   }
+
+
+//   export const claimrequestfunc = {
+//   isAdmin: (claims: any) => {
+//     // Check for "Owner" role based on the provided token structure
+//     const roleClaim = claims["UserName"];
+//     return roleClaim === "Office Admin" || roleClaim === "Owner"; // Assuming "Owner" is equivalent to "Admin" in your context, or adjust as needed.
+//   },
+//   isCEO: (claims: any) => { 
+//     const userTypeClaim = claims["UserType"];
+//     return userTypeClaim === "AppOwner" || userTypeClaim === "AppOwner"; // Replace "Teacher" and "SomeTeacherUserType" with actual values if different.
+    
+//   },
+   
+// };
