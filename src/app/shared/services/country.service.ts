@@ -5,7 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
  
 import { Observable } from 'rxjs';
 import { City, Country, State } from '../interfaces/country.interface';
-import { ReferenceOption, UserType } from '../interfaces/user.model';
+import { ReferenceOption, UserType,Role } from '../interfaces/user.model';
  
 @Injectable({
   providedIn: 'root'
@@ -45,8 +45,13 @@ export class CountryService {
  
 }
 
+getRoles(): Observable<Role[]> {
+  return this.http.get<Role[]>(`${this.apiUrl}/Role`);
+}
+
 postUser(userData: any): Observable<any> {
   return this.http.post(`${this.apiUrl}/Users`, userData);
 }
+ 
 
 }

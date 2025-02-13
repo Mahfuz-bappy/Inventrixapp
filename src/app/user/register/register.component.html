@@ -129,6 +129,25 @@
     </div>
   </div>
 
+
+  <div class="mb-3"> 
+    <ng-select id="role"  
+    id="role"
+    [items]="roles"
+    bindLabel="name"
+    bindValue="id"
+    placeholder="Select User Role"
+    formControlName="role"
+    [clearable]="false"
+    [searchable]="false"
+    size="sm"
+    style="padding-top: 0.05rem; padding-bottom: 0.05rem; font-size: 0.85rem; line-height: 1.2;"
+  > 
+       
+    </ng-select>
+  </div>
+
+
   <div class="mb-1">
     <input
       class="form-control bg-body-secondary form-control-sm"

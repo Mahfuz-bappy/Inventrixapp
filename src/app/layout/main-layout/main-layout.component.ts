@@ -6,12 +6,12 @@ import { AppHideIfClaimsNotMetDirective } from '../../shared/app-hide-if-claims-
 export const claimrequestfunc = {
   isAdmin: (claims: any) => {
     // Check for "Owner" role based on the provided token structure
-    const roleClaim = claims["UserName"];
+    const roleClaim = claims["UserRole"];
     return roleClaim === "Office Admin" || roleClaim === "Owner"; // Assuming "Owner" is equivalent to "Admin" in your context, or adjust as needed.
   },
   isCEO: (claims: any) => { 
-    const userTypeClaim = claims["UserType"];
-    return userTypeClaim === "AppOwner" || userTypeClaim === "AppOwner"; // Replace "Teacher" and "SomeTeacherUserType" with actual values if different.
+    const userTypeClaim = claims["UserRole"];
+    return userTypeClaim === "CEO" ||  userTypeClaim === "Owner"; ; // Replace "Teacher" and "SomeTeacherUserType" with actual values if different.
     
   },
    

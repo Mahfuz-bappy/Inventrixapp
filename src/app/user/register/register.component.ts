@@ -16,7 +16,7 @@ import { switchMap, delay, tap } from 'rxjs/operators';
 import {  NgSelectModule } from '@ng-select/ng-select';
 import { CountryService } from '../../shared/services/country.service';
 import { Country,State,City } from '../../shared/interfaces/country.interface';
-import { ReferenceOption, UserType } from '../../shared/interfaces/user.model';
+import { ReferenceOption, Role, UserType } from '../../shared/interfaces/user.model';
  
  
 @Component({
@@ -87,7 +87,7 @@ export class RegisterComponent implements OnInit {
   loadingCities = false;
   subscriptionTypes: UserType[] = [];
   referenceByOptions: ReferenceOption[] = [];
- 
+  roles: Role[] = [];
   //#region
   constructor(
     public formBuilder: FormBuilder,
@@ -130,7 +130,10 @@ this.countryService.getReferenceOptions().subscribe((referenceOptions: Reference
   console.log(referenceOptions);
 });
 
-
+this.countryService.getRoles().subscribe((roles: Role[]) => {
+  this.roles = roles;
+  console.log(roles);
+});
     this.form = this.formBuilder.group(
       {
         fullName: ['', Validators.required],
@@ -153,6 +156,7 @@ this.countryService.getReferenceOptions().subscribe((referenceOptions: Reference
         businessName: ['', Validators.required],
         subscriptionType: [null, Validators.required], // FormControl for Subscription Type
         referenceBy: [null, Validators.required],
+        role: [null, Validators.required], 
         
       },
       { validators: this.passwordMatchValidator }
@@ -239,6 +243,7 @@ this.countryService.getReferenceOptions().subscribe((referenceOptions: Reference
   onSubmit() {
     this.isSubmitted = true;
     console.log('Form Value:', this.form.value);
+    
     if (this.form.valid) {
       console.log('Form Value:', this.form.value); // Log the form values to the console (replace with actual submission logic)
       this.saveUserDatas();
@@ -299,7 +304,7 @@ this.countryService.getReferenceOptions().subscribe((referenceOptions: Reference
       districtId: formData.city,
       registeredBy: formData.referenceBy,
       userTypeId: formData.subscriptionType,
-      roleId: 1 // Assuming roleId is 0 for now, update as needed
+      roleId: formData.role, // Assuming roleId is 0 for now, update as needed
     };
 
 console.log('usrdata',userData);
@@ -307,9 +312,11 @@ console.log('usrdata',userData);
       
       next: (res: any) => {
         console.log('res',res);
+        this.toastr.success('New user created!', 'Registration Successful');
         this.form.reset();
           this.isSubmitted = false;
-          this.toastr.success('New user created!', 'Registration Successful');
+          this.router.navigate(['/signin']);
+          
         if (res.succeeded) {
           this.form.reset();
           this.isSubmitted = false;
