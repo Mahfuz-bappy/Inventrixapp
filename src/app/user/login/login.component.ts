@@ -58,8 +58,12 @@ export class LoginComponent {
           console.log(res);         
           this.service.saveToken(res.accessToken);
           this.service.saveRefreshToken(res.refreshToken);
-          this.router.navigateByUrl('/dashboard');
-
+          if(this.service.IsClient()){  
+            this.router.navigateByUrl('/storeboard');
+          }
+          else{
+            this.router.navigateByUrl('/dashboard');
+          } 
           return;
         },
         error: err => {

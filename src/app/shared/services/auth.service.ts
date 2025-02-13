@@ -53,4 +53,23 @@ export class AuthService {
     getClaims(){
      return JSON.parse(window.atob(this.getToken()!.split('.')[1]))
     }
+
+    getClaimUserName(){
+      return JSON.parse(window.atob(this.getToken()!.split('.')[1])).UserName;
+     }
+
+     getClaimUserId(){
+      return JSON.parse(window.atob(this.getToken()!.split('.')[1])).UserId;
+     }
+
+     getClaimUserType(){
+      return JSON.parse(window.atob(this.getToken()!.split('.')[1])).UserType;
+     }
+     IsClient(){  
+      if(this.getClaimUserType() != "AppOwner"){
+        return true;
+      } else {  
+        return false;
+      }
+     }
 }

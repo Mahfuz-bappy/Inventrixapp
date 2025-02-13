@@ -3,6 +3,9 @@ import { UserComponent } from './user/user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { PageNotFoundComponent } from './wildNavigate/page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ClientdashboardComponent } from './clientdashboard/clientdashboard.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -13,6 +16,21 @@ export const routes: Routes = [
       { path: 'signup', component: RegisterComponent },
       { path: 'signin', component: LoginComponent },
     ],
+  },
+
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'signin', component: LoginComponent },
+    ],
+  },
+   
+  { 
+    path: 'storeboard', component: ClientdashboardComponent
+    
+
   },
   {
     path: '**',
