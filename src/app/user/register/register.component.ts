@@ -16,6 +16,7 @@ import { switchMap, delay, tap } from 'rxjs/operators';
 import {  NgSelectModule } from '@ng-select/ng-select';
 import { CountryService } from '../../shared/services/country.service';
 import { Country,State,City } from '../../shared/interfaces/country.interface';
+import { ReferenceOption, UserType } from '../../shared/interfaces/user.model';
  
  
 @Component({
@@ -62,25 +63,31 @@ export class RegisterComponent implements OnInit {
   // ];
   // filteredCities: City[] = [];
   // loadingCities = false;
+
+
+  // subscriptionTypes = [
+  //   { id: 'monthly', name: 'Monthly' },
+  //   { id: 'yearly', name: 'Yearly' },
+  //   { id: 'lifetime', name: 'Lifetime' },
+  // ];
+
+  // referenceByOptions = [
+  //   { id: 'friend', name: 'Friend' },
+  //   { id: 'advertisement', name: 'Advertisement' },
+  //   { id: 'onlineSearch', name: 'Online Search' },
+  //   { id: 'other', name: 'Other' },
+  // ];
+
+
+
   countries: Country[] = []; // Initialize as empty array - data will be fetcheds
   filteredStates: State[] = []; // Will now hold State interface
   filteredCities: City[] = [];
   loadingStates = false;
   loadingCities = false;
-
-  subscriptionTypes = [
-    { id: 'monthly', name: 'Monthly' },
-    { id: 'yearly', name: 'Yearly' },
-    { id: 'lifetime', name: 'Lifetime' },
-  ];
-
-  referenceByOptions = [
-    { id: 'friend', name: 'Friend' },
-    { id: 'advertisement', name: 'Advertisement' },
-    { id: 'onlineSearch', name: 'Online Search' },
-    { id: 'other', name: 'Other' },
-  ];
-
+  subscriptionTypes: UserType[] = [];
+  referenceByOptions: ReferenceOption[] = [];
+ 
   //#region
   constructor(
     public formBuilder: FormBuilder,
@@ -111,6 +118,16 @@ export class RegisterComponent implements OnInit {
  this.countryService.getCountries().subscribe((countriesFromApi: Country[]) => {
   this.countries = countriesFromApi; // Assign API data to the countries array
 console.log(countriesFromApi);
+});
+
+this.countryService.getUserTypes().subscribe((userTypes: UserType[]) => {
+  this.subscriptionTypes = userTypes;
+  console.log(userTypes);
+});
+
+this.countryService.getReferenceOptions().subscribe((referenceOptions: ReferenceOption[]) => {
+  this.referenceByOptions = referenceOptions;
+  console.log(referenceOptions);
 });
 
 
@@ -224,6 +241,8 @@ console.log(countriesFromApi);
     console.log('Form Value:', this.form.value);
     if (this.form.valid) {
       console.log('Form Value:', this.form.value); // Log the form values to the console (replace with actual submission logic)
+      this.saveUserDatas();
+    
     }
   }
 
@@ -255,6 +274,60 @@ console.log(countriesFromApi);
                   'Contact the developer',
                   'Registration Failed'
                 );
+                console.log(x);
+                break;
+            }
+          });
+        else console.log('error:', err);
+      },
+    });
+
+  }
+
+
+  saveUserDatas(){
+
+    const formData = this.form.value;
+    const userData = {
+      email: formData.email,
+      password: formData.password,
+      firstName: formData.firstname,
+      lastName: formData.lastname,
+      businessName: formData.businessName,
+      businessLocation: formData.city.toString(),
+      businessContactNo: formData.phoneNo,
+      districtId: formData.city,
+      registeredBy: formData.referenceBy,
+      userTypeId: formData.subscriptionType,
+      roleId: 1 // Assuming roleId is 0 for now, update as needed
+    };
+
+console.log('usrdata',userData);
+    this.countryService.postUser(userData).subscribe({
+      
+      next: (res: any) => {
+        console.log('res',res);
+        this.form.reset();
+          this.isSubmitted = false;
+          this.toastr.success('New user created!', 'Registration Successful');
+        if (res.succeeded) {
+          this.form.reset();
+          this.isSubmitted = false;
+          this.toastr.success('New user created!', 'Registration Successful');
+        }
+      },
+      error: (err) => {
+        console.log('res',err);
+        if (err.error.errors)
+          err.error.errors.forEach((x: any) => {
+            switch (x.code) {
+              case 'DuplicateUserName':
+                break;
+              case 'DuplicateEmail':
+                this.toastr.error('Email is already taken.', 'Registration Failed');
+                break;
+              default:
+                this.toastr.error('Contact the developer', 'Registration Failed');
                 console.log(x);
                 break;
             }

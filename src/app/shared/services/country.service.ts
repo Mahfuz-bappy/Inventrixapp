@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
  
 import { Observable } from 'rxjs';
 import { City, Country, State } from '../interfaces/country.interface';
+import { ReferenceOption, UserType } from '../interfaces/user.model';
  
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,18 @@ export class CountryService {
     return this.http.get<City[]>(apiUrl);
   }
   
+
+  getUserTypes(): Observable<UserType[]> {
+    return this.http.get<UserType[]>(`${this.apiUrl}/UserTypes`);
+  }
+
+  getReferenceOptions(): Observable<ReferenceOption[]> {
+    return this.http.get<ReferenceOption[]>(`${this.apiUrl}/Person`);
  
+}
+
+postUser(userData: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/Users`, userData);
+}
+
 }
