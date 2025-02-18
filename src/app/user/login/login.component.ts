@@ -69,6 +69,10 @@ export class LoginComponent {
         error: err => {
           if (err.status == 400)
             this.toastr.error('Incorrect email or password.', 'Login failed')
+          else if (err.status == 401)
+          {
+            this.toastr.error('Incorrect email or password.', 'Login failed')
+          }
           else
             console.log('error during login:\n', err);
         }
