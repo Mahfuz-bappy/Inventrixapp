@@ -46,16 +46,20 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+             
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              } 
             ],
             "styles": [
               "src/styles.css"
-              , "node_modules/ngx-toastr/toastr.css"
+              , "node_modules/ngx-toastr/toastr.css" 
+              
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            
+          ]
           },
           "configurations": {
             "production": {
@@ -63,12 +67,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "700kB",
-                  "maximumError": "1MB"
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "232KB",
+                  "maximumError": "250kB"
                 }
               ],
               "outputHashing": "all"

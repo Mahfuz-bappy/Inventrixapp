@@ -29,10 +29,11 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
+    background-color: cadetblue;
   }
   
   #sidebar li.nav-item a {
-    color: #637381;
+    color: #6a282a;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 0.7rem 1rem;

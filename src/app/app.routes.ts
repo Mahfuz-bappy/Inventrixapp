@@ -8,6 +8,7 @@ import { ClientdashboardComponent } from './clientdashboard/clientdashboard.comp
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { EmployeeComponent } from './admin/employee/employee.component';
 import { EmployeeLeaveComponent } from './admin/employee-leave/employee-leave.component';
+import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -31,8 +32,10 @@ export const routes: Routes = [
   },
    
   { 
-    path: 'storeboard', component: ClientdashboardComponent
-    
+    path:'',component:ClientLayoutComponent,
+    children:[
+    {path: 'storeboard', component: ClientdashboardComponent}
+    ]
 
   },
   {
