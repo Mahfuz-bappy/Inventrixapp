@@ -1,0 +1,64 @@
+.header-section {
+    background-color: #EDF1F9;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center; /* Vertically align logo and toggle icon */
+  }
+  
+  .header-toggle-icon {
+    font-size: 1.5rem; /* Adjust size as needed */
+    margin-right: 10px; /* Space between icon and logo text */
+    cursor: pointer; /* Indicate it's clickable */
+  }
+  
+  .header-search {
+    flex-grow: 1; /* Allow search bar to take available space in the middle */
+    margin: 0 15px; /* Add some horizontal margin */
+  }
+  
+  .header-notification-profile {
+    /* Already aligned to the right by Bootstrap classes */
+    display: flex; /* For potential further styling if needed */
+    align-items: center; /* Vertically align items */
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+  }
+
+  .header-notification-profile_na {
+    /* Already display: flex and align-items: center */
+    /* Add rule to prevent wrapping */
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+  }
+  .header-notification-profile > * { /* Target direct children of header-notification-profile */
+    margin-left: 15px; /* Add spacing between icons/profile section */
+  }
+  
+  .header-notification-profile > *:first-child { /* Remove left margin for the first child (optional, if needed) */
+    margin-left: 0;
+  }
+
+  
+  .header-profile-picture {
+    margin-right: 5px; /* Space between profile picture and name */
+  }
+  
+  .navbar-brand { /* Style the brand/logo text */
+    display: flex; /* To align icon and text in brand */
+    align-items: center;
+  }
+
+
+  
+
+/* 
+.header-icon-link {
+  margin-left: 15px; 
+}
+ 
+ 
+.header-profile-dropdown {
+  margin-left: 20px;  
+} */

@@ -1,0 +1,71 @@
+<div class="header-section">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="header-logo">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-list header-toggle-icon" (click)="toggleSidebar()"></i> InventrixApp </a>
+      </div>
+
+      <div class="header-search">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="header-notification-profile">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="toggleNotifications()">
+              <i class="bi bi-bell-fill"></i> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="toggleMessages()">
+              <i class="bi bi-envelope-fill"></i> </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://placehold.co/30x30" alt="Profile" class="header-profile-picture rounded-circle">
+              Your Name </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <div class="header-notification-profile">
+        <div class="header-icon-link">
+          <a href="#" (click)="toggleNotifications()">
+            <i class="bi bi-bell-fill"></i>
+          </a>
+        </div>
+        <div class="header-icon-link">
+          <a href="#" (click)="toggleMessages()">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+        </div>
+        <div class="header-profile-dropdown dropdown">
+          <a class="dropdown-toggle" href="#" id="navbarDropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://via.placeholder.com/30" alt="Profile" class="header-profile-picture rounded-circle"> Your Name
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div> -->
+
+
+
+    </div>
+  </nav>
+</div>
