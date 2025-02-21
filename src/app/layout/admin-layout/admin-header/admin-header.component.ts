@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 
@@ -10,7 +10,8 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['./admin-header.component.css']
 })
 export class AdminHeaderComponent {
-  @Input() isSidebarCollapsed: boolean = false;
+  @Output() toggleSidebar = new EventEmitter<void>();
+  // @Input() isSidebarCollapsed: boolean = false;
   isDropdownOpen: boolean = false;
   isNotificationPanelOpen: boolean = false;
 
@@ -24,8 +25,8 @@ export class AdminHeaderComponent {
     this.isNotificationPanelOpen = !this.isNotificationPanelOpen;
   }
 
-  toggleSidebar(): void {
-    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  onToggleSidebar(): void {
+    this.toggleSidebar.emit();
   }
 
   logout(): void {

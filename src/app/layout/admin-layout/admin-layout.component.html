@@ -1,4 +1,4 @@
-<app-admin-header [isSidebarCollapsed]="isSidebarCollapsed" (toggleSidebar)="toggleSidebar()"></app-admin-header>
+<app-admin-header   (toggleSidebar)="toggleSidebar()"></app-admin-header>
 <app-admin-sidebar [isSidebarCollapsed]="isSidebarCollapsed"></app-admin-sidebar>
 <app-admin-main [class.collapsed]="isSidebarCollapsed">
   <router-outlet></router-outlet>
