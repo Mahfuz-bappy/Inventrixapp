@@ -1,1 +1,43 @@
-<p>company-entry works!</p>
+ 
+<div class="container">
+    <h2>Company Entry</h2>
+    <form [formGroup]="companyForm" (ngSubmit)="editingCompany ? updateCompany() : addCompany()">
+      <div class="form-group">
+        <label for="name">Company Name</label>
+        <input id="name" formControlName="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="address">Company Address</label>
+        <input id="address" formControlName="address" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="businessType">Company Business Type</label>
+        <input id="businessType" formControlName="businessType" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">{{ editingCompany ? 'Update' : 'Add' }} Company</button>
+      <button type="button" class="btn btn-secondary" *ngIf="editingCompany" (click)="cancelEdit()">Cancel</button>
+    </form>
+  
+    <h3>Company List</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Business Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td>{{ company.name }}</td>
+          <td>{{ company.address }}</td>
+          <td>{{ company.businessType }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editCompany(company)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteCompany(company)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
