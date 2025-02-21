@@ -62,11 +62,33 @@
   }
   
   /* Style for submenu list */
+
+  .sidebar-nav-submenuNa {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f9fa; /* Lighter background for submenu */ 
+
+  }
   .sidebar-nav-submenu {
     list-style: none;
     padding: 0;
     margin: 0;
     background-color: #f8f9fa; /* Lighter background for submenu */
+    display: none;
+    overflow: hidden; /*  <--- Add to clip content during animation */
+    height: 0;       /*  <--- Initial height: hidden */
+    opacity: 0;      /*  <--- Initial opacity: fully transparent */
+    transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out; /*  <--- Add transitions */
+  
+
+
+  }
+
+  .sidebar-nav-item.has-submenu.active > .sidebar-nav-submenu {
+    display: block;   /*  <--- ADD display: block; to show submenu */
+    height: auto;    /*  <--- Expand to auto height to show content */
+    opacity: 1;     /*  <--- Make fully opaque when expanded */
   }
   
   /* Style for submenu items */
