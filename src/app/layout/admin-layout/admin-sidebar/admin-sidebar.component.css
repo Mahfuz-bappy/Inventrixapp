@@ -8,7 +8,7 @@
 }
 
 .admin-sidebar.collapsed {
-  width: 80px;
+  width: 30px;
 }
 
 .admin-sidebar .sidebar-nav {
@@ -35,6 +35,7 @@
 .admin-sidebar .sidebar-nav li a.active {
   background-color: #4F7ACC;
   padding: 10px;
+  transition: background-color 0.3s;
 }
 
 .admin-sidebar .sidebar-nav li.has-submenu > a::after {

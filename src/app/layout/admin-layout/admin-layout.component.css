@@ -24,5 +24,5 @@ body {
   }
 
   .admin-main.collapsed {
-    margin-left: 80px; /* Width of the collapsed sidebar */
+    margin-left: 30px; /* Width of the collapsed sidebar */
   }
