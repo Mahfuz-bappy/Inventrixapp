@@ -62,7 +62,7 @@ export class LoginComponent {
             this.router.navigateByUrl('/storeboard');
           }
           else{
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/admin');
           } 
           return;
         },

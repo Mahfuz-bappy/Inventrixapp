@@ -1,8 +1,25 @@
 <aside class="admin-sidebar" [class.collapsed]="isSidebarCollapsed">
   <ul class="sidebar-nav">
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">Transactions</a></li>
-    <li><a href="#">Reports</a></li>
+    <li class="has-submenu" [class.open]="isSubmenuOpen.settings">
+      <a (click)="toggleSubmenu('settings')">
+        <i class="bi bi-gear"></i> Settings
+      </a>
+      <ul class="submenu" [class.show]="isSubmenuOpen.settings">
+        <li><a routerLink="/admin/settings/company-entry" routerLinkActive="active">Company Entry</a></li>
+        <li><a routerLink="/admin/settings/subscription-entry" routerLinkActive="active">Subscription Entry</a></li>
+        <li><a routerLink="/admin/settings/state-entry" routerLinkActive="active">State Entry</a></li>
+        <li><a routerLink="/admin/settings/country-entry" routerLinkActive="active">Country Entry</a></li>
+      </ul>
+    </li>
+    <li class="has-submenu" [class.open]="isSubmenuOpen.transactions">
+      <a (click)="toggleSubmenu('transactions')">
+        <i class="bi bi-file-earmark-text"></i> Transactions
+      </a>
+      <ul class="submenu" [class.show]="isSubmenuOpen.transactions">
+        <li><a routerLink="/admin/transaction/subscription-approval" routerLinkActive="active">Subscription Approval</a></li>
+        <li><a routerLink="/admin/transaction/employee-leave" routerLinkActive="active">Employee Leave</a></li>
+        <li><a routerLink="/admin/transaction/employee-resignation" routerLinkActive="active">Employee Resignation</a></li>
+      </ul>
+    </li>
   </ul>
 </aside>

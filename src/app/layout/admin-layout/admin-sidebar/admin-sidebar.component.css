@@ -1,33 +1,74 @@
 .admin-sidebar {
-    background-color: #0364B8;
-    color: white;
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    transition: width 0.3s;
+  background-color: #0364B8;
+  color: white;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  transition: width 0.3s;
+}
+
+.admin-sidebar.collapsed {
+  width: 80px;
+}
+
+.admin-sidebar .sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-sidebar .sidebar-nav li {
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.admin-sidebar .sidebar-nav li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s;
+}
+
+.admin-sidebar .sidebar-nav li a:hover,
+.admin-sidebar .sidebar-nav li a.active {
+  background-color: #4F7ACC;
+  padding: 10px;
+}
+
+.admin-sidebar .sidebar-nav li.has-submenu > a::after {
+  content: '▼';
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+.admin-sidebar .sidebar-nav li.has-submenu.open > a::after {
+  transform: rotate(-180deg);
+}
+
+.admin-sidebar .sidebar-nav .submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+}
+
+.admin-sidebar .sidebar-nav .submenu.show {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
+
   .admin-sidebar.collapsed {
-    width: 80px;
+    width: 100%;
   }
-  
+
   .admin-sidebar .sidebar-nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    flex-direction: column;
   }
-  
-  .admin-sidebar .sidebar-nav li {
-    padding: 15px 20px;
-  }
-  
-  .admin-sidebar .sidebar-nav li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s;
-  }
-  
-  .admin-sidebar .sidebar-nav li a:hover {
-    background-color: #21845E;
-  }
+}
