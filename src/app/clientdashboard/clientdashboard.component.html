@@ -1,53 +1,99 @@
-Client Dashboard Works
-<!-- <div class="d-flex">
-    <div class="sidebar p-3">
-        <h4 class="text-primary">Shop Name</h4>
-        <ul class="nav flex-column">
-            <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Sale</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Sale Return</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Purchase</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Expense</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Net Profit</a></li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <div class="top-bar">Dashboard - 26-01-2025</div>
-        <div class="row mt-3">
+<div class="dashboard-container">
+
+
+
+
+
+
+    <div class="col-md-9">
+        <div class="row">
             <div class="col-md-3">
-                <div class="card bg-primary text-white">Sale: 0</div>
+                <div class="dashboard-card sales-card">
+                    <div class="card-header">Sales | Today1</div>
+                    <div class="card-body">
+                        <div class="value">145</div>
+                        <div class="indicator increase">
+                            <i class="bi bi-arrow-up"></i> 12% Increase
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="col-md-3">
-                <div class="card bg-success text-white">Sale Return: 0</div>
+                <div class="dashboard-card revenue-card">
+                    <div class="card-header">Revenue | This Month</div>
+                    <div class="card-body">
+                        <div class="value">$3,264</div>
+                        <div class="indicator increase">
+                            <i class="bi bi-arrow-up"></i> 8% increase
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
             <div class="col-md-3">
-                <div class="card bg-warning text-dark">Purchase: 0</div>
+                <div class="dashboard-card customers-card">
+                    <div class="card-header">Customers | This Year</div>
+                    <div class="card-body">
+                        <div class="value">1244</div>
+                        <div class="indicator decrease">
+                            <i class="bi bi-arrow-down"></i> 12% decrease
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <div class="card bg-danger text-white">Expense: 0</div>
-            </div>
+
+
         </div>
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <div class="card">Total Balance: 0</div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">Net Profit: 0</div>
-            </div>
-        </div>
-        <h5 class="mt-4">Profitable Products</h5>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Profit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>T-shirt</td><td>89%</td></tr>
-                <tr><td>Pant</td><td>70%</td></tr>
-                <tr><td>Blazer</td><td>50%</td></tr>
-            </tbody>
-        </table>
     </div>
-</div> -->
+    <div class="col-md-3">
+
+        
+           
+         
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="dashboard-chart-card">
+                    <div class="card-header">Budget Report | This Month</div>
+                    <div class="card-body">
+                        <canvas #myRadarChart width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-chart-card">
+                    <div class="card-header">Reports | Today</div>
+                    <div class="card-body">
+                        <canvas #myLineChart width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-md-3"> </div>
+
+
+    <div class="dashboard-card recent-activity-card">
+        <div class="card-header">Recent Activity | Today</div>
+        <div class="card-body">
+            <ul class="activity-list">
+                <li>
+                    <span class="time">32 min</span>
+                    <span class="activity-text">Quia quae rerum explicabo officiis beatae</span>
+                </li>
+                <li>
+                    <span class="time">56 min</span>
+                    <span class="activity-text">Voluptatem blanditiis blanditiis eveniet</span>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>

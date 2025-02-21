@@ -1,21 +1,123 @@
-.sidebar {
-    width: 250px;
-    background: #f8f9fa;
-    height: 100vh;
-    padding-top: 20px;
-    position: fixed;
-}
-.main-content {
-    margin-left: 260px;
+/* clientdashboard.component.css */
+
+.dashboard-container {
     padding: 20px;
-}
-.card {
-    text-align: center;
-    padding: 15px;
-}
-.top-bar {
-    background: #007bff;
-    color: white;
+    font-family: 'Arial', sans-serif; /* Example font */
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .col-md-3, .col-md-6 {
+    flex: 1;
     padding: 10px;
-    text-align: center;
-}
+    box-sizing: border-box;
+    max-width: 50%; /* Default for smaller columns */
+  }
+  .col-md-6 {
+    max-width: 100%; /* Default for larger columns */
+  }
+  
+  
+  .dashboard-card, .dashboard-chart-card {
+    background-color: #ffffff; /* White card background */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    overflow: hidden;
+    border: 1px solid #e0e0e0; /* Light border */
+  }
+  
+  .card-header {
+    background-color: #f8f9fa; /* Very light gray header */
+    color: #333; /* Dark header text */
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600; /* Semi-bold header text */
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.1em; /* Slightly larger header font */
+  }
+  
+  .card-body {
+    padding: 25px 20px; /* Increased card body padding */
+  }
+  
+  .value {
+    font-size: 2.8em; /* Larger value font */
+    font-weight: bold;
+    color: #495057; /* Slightly darker value color */
+    margin-bottom: 15px;
+  }
+  
+  .indicator {
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+    color: #6c757d; /* Muted indicator color */
+  }
+  
+  .indicator.increase {
+    color: #28a745; /* Green for increase */
+  }
+  
+  .indicator.decrease {
+    color: #dc3545; /* Red for decrease */
+  }
+  
+  .indicator i {
+    margin-right: 8px; /* Increased icon spacing */
+    font-size: 0.9em; /* Slightly smaller indicator icon */
+  }
+  
+  .activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .activity-list li {
+    padding: 12px 0; /* Increased activity item padding */
+    border-bottom: 1px dashed #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .activity-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .time {
+    font-size: 0.85em;
+    color: #777;
+    margin-right: 15px; /* Increased time spacing */
+    flex-shrink: 0;
+    width: 60px; /* Slightly wider time column */
+    text-align: right;
+  }
+  
+  .activity-text {
+    flex-grow: 1;
+    font-size: 1em; /* Slightly larger activity text */
+    line-height: 1.5;
+    color: #495057;
+  }
+  
+  .dashboard-chart-card .card-body {
+    padding: 15px; /* Adjusted chart card body padding */
+  }
+  
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .col-md-3, .col-md-6 {
+      max-width: 100%; /* Full width columns on smaller screens */
+    }
+    .row {
+      flex-direction: column; /* Stack rows vertically on smaller screens */
+    }
+    .dashboard-card, .dashboard-chart-card {
+      margin-bottom: 15px; /* Spacing between stacked cards */
+    }
+  }

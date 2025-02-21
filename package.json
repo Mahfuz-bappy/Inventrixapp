@@ -21,6 +21,8 @@
     "@ng-select/ng-select": "^14.2.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.8",
+    "ng2-charts": "^8.0.0",
     "ngx-toastr": "^19.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
