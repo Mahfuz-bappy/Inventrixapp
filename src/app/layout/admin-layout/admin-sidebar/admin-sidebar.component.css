@@ -1,0 +1,33 @@
+.admin-sidebar {
+    background-color: #0364B8;
+    color: white;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    transition: width 0.3s;
+  }
+  
+  .admin-sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .admin-sidebar .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .admin-sidebar .sidebar-nav li {
+    padding: 15px 20px;
+  }
+  
+  .admin-sidebar .sidebar-nav li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .admin-sidebar .sidebar-nav li a:hover {
+    background-color: #21845E;
+  }

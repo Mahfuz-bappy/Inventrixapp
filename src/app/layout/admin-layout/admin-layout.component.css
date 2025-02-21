@@ -1,0 +1,18 @@
+/* Add any additional styles for the admin layout here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .admin-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .admin-layout main {
+    flex: 1;
+    overflow-y: auto;
+  }

@@ -1,0 +1,133 @@
+.admin-header {
+  background-color: #023B6D;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.admin-header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header .logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.admin-header .nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-header .nav ul li {
+  position: relative;
+}
+
+.admin-header .nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.admin-header .nav ul li a:hover {
+  color: #009BD9;
+}
+
+.admin-header .nav ul li .profile-pic {
+  height: 30px;
+  border-radius: 50%;
+}
+
+.admin-header .nav ul li .dropdown-menu,
+.admin-header .nav ul li .notification-panel {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: black;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  width: 300px; /* Adjust width as needed */
+}
+
+.admin-header .nav ul li .dropdown-menu a,
+.admin-header .nav ul li .notification-panel p {
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+}
+
+.admin-header .nav ul li .dropdown-menu a:hover,
+.admin-header .nav ul li .notification-panel p:hover {
+  background-color: #f1f1f1;
+}
+
+.admin-header .nav ul li .dropdown-menu.show,
+.admin-header .nav ul li .notification-panel.show {
+  display: block;
+}
+
+.admin-header .nav ul li .notification-toggle {
+  position: relative;
+}
+
+.admin-header .nav ul li .notification-count {
+  background-color: #4a620b; /* Standard green color */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}
+
+.admin-header .nav ul li .notification-panel .notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-header .nav ul li .notification-panel .notification-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header .nav ul li .notification-panel .notification-list li:last-child {
+  border-bottom: none;
+}
+
+.admin-header .nav ul li .notification-panel .notification-list .message {
+  font-weight: bold;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+}
+
+.admin-header .nav ul li .notification-panel .notification-list .date {
+  font-size: 12px;
+  color: #888;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .admin-header .nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

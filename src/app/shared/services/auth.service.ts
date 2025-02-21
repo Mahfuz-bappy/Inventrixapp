@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { REFRESH_TOKEN_KEY, TOKEN_KEY } from '../constants';
+import { Router } from '@angular/router';
  
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService { 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,private router:Router) { }
   
     createUser(formData: any) {
       //WARNING!
@@ -72,4 +73,13 @@ export class AuthService {
         return false;
       }
      }
+
+
+     logout(): void {
+      // Clear user authentication data (e.g., tokens)
+      this.deleteToken();
+      this.deleteRefreshToken(); 
+      // Navigate to the signin page
+      this.router.navigate(['/signin']);
+    }
 }
