@@ -4,3 +4,75 @@
     padding: 10px;
     text-align: center;
   }
+
+  /* footer.component.css */
+
+.app-footer {
+  background-color: #f0f0f0; /* Light gray background for footer */
+  color: #555; /* Dark gray text color */
+  padding: 20px 0; /* Vertical padding */
+  border-top: 1px solid #e0e0e0; /* Subtle top border to separate footer from content */
+}
+
+.footer-content {
+  max-width: 1200px; /* Example max width for content centering */
+  margin: 0 auto; /* Center content horizontally */
+  padding: 0 20px; /* Horizontal padding for content */
+  display: flex;
+  justify-content: space-between; /* Distribute space between company info and copyright */
+  align-items: center; /* Vertically align items in the footer */
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+}
+
+.company-info {
+  flex: 1; /* Take up available space */
+  margin-right: 20px; /* Spacing between company info and copyright */
+}
+
+.company-name {
+  margin-top: 0; /* Remove default top margin from h4 */
+  margin-bottom: 5px; /* Spacing below company name */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.company-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 0.9em;
+  color: #777; /* Lighter color for dialog text */
+}
+
+.contact-copyright {
+  text-align: right; /* Align copyright text to the right */
+  font-size: 0.85em;
+}
+
+.contact-copyright p {
+  margin: 0; /* Remove default paragraph margins */
+}
+
+.contact-info a {
+  color: #007bff; /* Example link color */
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Stack content vertically on smaller screens */
+    text-align: center; /* Center align text on smaller screens */
+  }
+  .company-info {
+    margin-right: 0; /* Remove right margin on smaller screens */
+    margin-bottom: 15px; /* Add bottom margin for spacing */
+    text-align: center;
+  }
+  .contact-copyright {
+    text-align: center; /* Center align copyright on smaller screens */
+  }
+}

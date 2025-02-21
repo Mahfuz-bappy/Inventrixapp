@@ -42,15 +42,21 @@
       <li *ngFor="let item of menuItems" class="sidebar-nav-item" [class.has-submenu]="item.submenu">
         <a class="sidebar-nav-link"
            [routerLink]="item.route"   
-           (click)="item.submenu ? toggleSubMenu(item.id) : ''"
-           [class.active]="isSubMenuOpen(item.id)">
+           (click)="item.submenu ? toggleSubMenu(item.id) :  collapseAllSubmenus()"
+           [class.active]="isMenuItemActiveByRoute(item)  && item.route">
           <i class="sidebar-nav-icon" [class]="item.icon"></i>
           <span class="sidebar-nav-text">{{ item.label }}</span>
-          <i *ngIf="item.submenu" class="bi bi-chevron-down sidebar-nav-submenu-indicator"></i>
+          <i *ngIf="item.submenu"  class="sidebar-nav-submenu-indicator"
+          [ngClass]="{'bi-chevron-down': !isSubmenuToggledOpen(item.id), 'bi-chevron-up': isSubmenuToggledOpen(item.id)}"
+          >
+
+
+          </i>
         </a>
-        <ul *ngIf="isSubMenuOpen(item.id)" class="sidebar-nav-submenu">
+        <ul class="sidebar-nav-submenu" *ngIf="isSubmenuToggledOpen(item.id)" >
           <li *ngFor="let subItem of item.submenu" class="sidebar-nav-item">
-            <a class="sidebar-nav-link" [routerLink]="subItem.route"> 
+            <a class="sidebar-nav-link" [routerLink]="subItem.route" 
+            [class.active]="this.router.url === subItem.route"> 
               <span class="sidebar-nav-text">{{ subItem.label }}</span>
             </a>
           </li>

@@ -1,0 +1,5 @@
+main.col-md-9,
+main.col-md-11 {
+  min-height: 80vh; /* Set minimum height to 100% of viewport height */
+  /* You can keep other styles for main content here, like padding, etc. */
+}

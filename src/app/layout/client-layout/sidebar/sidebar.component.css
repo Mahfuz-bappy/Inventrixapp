@@ -93,15 +93,24 @@
 
 
   .sidebar-nav-item.has-submenu > .sidebar-nav-link.active + .sidebar-nav-submenu { 
-    /* Corrected selector */
+    
     display: block;
     height: auto;
     opacity: 1;
-  }
+     
+  } 
 
 
   .sidebar-nav-item.has-submenu > .sidebar-nav-link.active > .sidebar-nav-submenu-indicator { /* Corrected selector */
-    transform: rotate(180deg);
+   
+    transform: rotate(180deg) !important;
+    transition: transform 0.3s ease-in-out !important;
+  }
+
+  .sidebar-nav-submenu .sidebar-nav-item > .sidebar-nav-link.active {
+    background-color: #D5DFF0; /* Example: Blue background color for active submenu item */
+   /* color: white;             /* Example: White text color for active submenu item */
+    /* You can add other styles here as needed */
   }
   
   /* Style for submenu items */

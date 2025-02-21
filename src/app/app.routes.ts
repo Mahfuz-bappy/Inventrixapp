@@ -13,7 +13,7 @@ import { UsersComponent } from './layout/client-layout/users/users.component';
 import { SettingsComponent } from './layout/client-layout/settings/settings.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/storeboard', pathMatch: 'full' },
+  // { path: '', redirectTo: '/storeboard', pathMatch: 'full' },
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
   {
     path: '',
@@ -35,16 +35,17 @@ export const routes: Routes = [
   },
    
   { 
-    path:'',component:ClientLayoutComponent,
+    path:'storeboard',component:ClientLayoutComponent,
     children:[
-    {path: 'storeboard', component: ClientdashboardComponent},
-    { path: 'dashboard', component: ClientdashboardComponent }, // Route for /dashboard
-    { path: 'users', component: UsersComponent },         // Route for /users
-    { path: 'settings', component: SettingsComponent },   // Route for /settings
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect r
+    {path: 'dashboard', component: ClientdashboardComponent}, 
+    {path: 'settings', component: SettingsComponent}, 
+    {path: 'Users', component: UserComponent}, 
+    {path: 'storeboard1', component: PageNotFoundComponent}, 
+    // { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect r
     ]
 
   },
+  
   {
     path: '**',
     component: PageNotFoundComponent, // Wildcard route for a 404 page
