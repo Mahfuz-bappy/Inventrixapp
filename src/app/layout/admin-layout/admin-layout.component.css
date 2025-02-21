@@ -16,3 +16,13 @@ body {
     flex: 1;
     overflow-y: auto;
   }
+
+  
+  .admin-main {
+    transition: margin-left 0.3s;
+    margin-left: 250px; /* Default width of the sidebar */
+  }
+
+  .admin-main.collapsed {
+    margin-left: 80px; /* Width of the collapsed sidebar */
+  }

@@ -7,6 +7,16 @@
   padding: 10px 20px;
 }
 
+.admin-header .header-left {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header .header-left a {
+  margin-right: 10px;
+  font-size: 24px; /* Increase font size of the toggle icon */
+}
+
 .admin-header .logo {
   display: flex;
   align-items: center;

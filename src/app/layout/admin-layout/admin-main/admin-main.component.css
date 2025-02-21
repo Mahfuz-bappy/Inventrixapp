@@ -1,9 +1,8 @@
 .admin-main {
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.3s;
-  }
-  
-  .admin-main.collapsed {
-    margin-left: 80px;
-  }
+  transition: margin-left 0.3s;
+  margin-left: 250px; /* Default width of the sidebar */
+}
+
+.admin-main.collapsed {
+  margin-left: 80px; /* Width of the collapsed sidebar */
+}
