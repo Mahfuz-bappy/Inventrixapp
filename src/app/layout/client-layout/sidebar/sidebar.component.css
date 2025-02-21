@@ -2,5 +2,137 @@
 .sidebar-section {
     background-color: #FFFFFF;
     padding: 15px;
+    z-index: 100;
+  }
+
+  .sidebar {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #EDF1F9; /* Background color from your theme */
+    height: 100%; /* Make sidebar take full height of its container */
+    position: fixed; /* Fixed position sidebar */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Enable vertical scrolling if content is long */
+    padding-top: 60px; /* Add padding for header height (adjust if needed) */
+    transition: width 0.3s ease-in-out; /* Smooth width transition for toggle effect later */
+    height: 100vh; /* Change to 100vh to be relative to viewport height */
+    padding-top: 92px;
+   
   }
   
+  /* Style for the sidebar navigation list */
+  .sidebar-nav {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+    
+  }
+  
+  /* Style for each sidebar menu item (list item) */
+  .sidebar-nav-item {
+    padding: 0; /* Remove default padding */
+  }
+  
+  /* Style for the sidebar menu links */
+  .sidebar-nav-link {
+    display: block; /* Make link occupy full width of list item */
+    padding: 12px 20px; /* Vertical and horizontal padding for links */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Dark text color (adjust as needed) */
+    display: flex; /* Use flexbox to align icon and text */
+    align-items: center; /* Vertically align icon and text */
+    transition: background-color 0.2s ease-in-out; /* Hover effect transition */
+  }
+  
+  .sidebar-nav-link:hover {
+    background-color: #FFFFFF; /* Light background on hover */
+    color: #007bff; /* Example hover text color (adjust as needed) */
+  }
+  
+  /* Style for the sidebar menu icons */
+  .sidebar-nav-icon {
+    margin-right: 15px; /* Spacing between icon and text */
+    font-size: 1.2rem; /* Icon size (adjust as needed) */
+    color: #555; /* Icon color (adjust as needed) */
+  }
+  
+  /* Style for the sidebar menu text (labels) */
+  .sidebar-nav-text {
+    font-size: 1rem; /* Text size (adjust as needed) */
+  }
+  
+  /* Style for submenu list */
+  .sidebar-nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f9fa; /* Lighter background for submenu */
+  }
+  
+  /* Style for submenu items */
+  .sidebar-nav-submenu .sidebar-nav-item .sidebar-nav-link {
+    padding-left: 40px; /* Indentation for submenu items */
+    font-size: 0.9rem; /* Smaller font size for submenu items */
+  }
+  
+  /* Style for submenu indicator icon (chevron) */
+  .sidebar-nav-submenu-indicator {
+    margin-left: auto; /* Push indicator to the right end of the link */
+    transition: transform 0.3s ease-in-out; /* Rotation animation for indicator */
+  }
+  
+  /* Style for active submenu toggle (when submenu is open) */
+  .sidebar-nav-item.has-submenu.active > .sidebar-nav-link > .sidebar-nav-submenu-indicator {
+    transform: rotate(180deg); /* Rotate indicator 180 degrees when submenu is active/open */
+  }
+  
+  /* Add more specific styles as needed (colors, fonts, spacing, etc.) to refine the look */
+  /* Media query for mobile screens (screen width less than 768px - Bootstrap's 'sm' breakpoint) */
+@media (max-width: 767.98px) {
+  .sidebar {
+    width: 100%; /* Make sidebar full-width on mobile */
+    position: static; /* Let sidebar flow in normal document flow on mobile */
+    height: auto;     /* Allow height to adjust to content on mobile */
+    padding-top: 0;  /* Remove top padding on mobile */
+    overflow-y: visible; /* Disable fixed height scrolling - let it scroll with the page */
+  } 
+/* You can add more specific styling for collapsed state as needed */ 
+
+}
+
+
+
+
+/* --- Collapsed Sidebar Styles --- */
+
+.sidebar.collapsed {
+  /*width: 60px; /* Very narrow width when collapsed */
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-nav-text {
+  display: none; /* Hide text labels when collapsed */
+}
+
+.sidebar.collapsed .sidebar-nav-submenu {
+  display: none; /* Optionally hide submenus when collapsed */
+}
+
+.sidebar.collapsed .sidebar-nav-link {
+  padding-left: 15px; /* Adjust padding in collapsed state */
+  padding-right: 15px;
+  text-align: center; /* Center icons in collapsed state */
+}
+
+.sidebar.collapsed .sidebar-nav-icon {
+  margin-right: 0; /* Remove right margin for icon in collapsed state */
+  margin-bottom: 5px; /* Add a little bottom margin if needed for visual balance */
+  display: block; /* Ensure icon is a block element for centering if needed */
+  margin-left: auto;
+  margin-right: auto; /* Center icon horizontally in collapsed state */
+}
+
+/* Optional: Adjust submenu indicator in collapsed state, if needed */
+.sidebar.collapsed .sidebar-nav-submenu-indicator {
+  display: none; /* Hide submenu indicator in collapsed state for cleaner look */
+}

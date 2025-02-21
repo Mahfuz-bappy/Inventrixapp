@@ -2,6 +2,8 @@
     background-color: #EDF1F9;
     padding: 15px;
     text-align: center;
+    z-index: 1000; /* Ensure header is on top of other content */
+    position: relative; /*  <----- ADD THIS LINE */
   }
 
   .header-logo {

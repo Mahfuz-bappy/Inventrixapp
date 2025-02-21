@@ -12,5 +12,11 @@ import { FooterComponent } from "./footer/footer.component";
   styleUrl: './client-layout.component.css'
 })
 export class ClientLayoutComponent {
+  isSidebarCollapsed: boolean = false; // Add this line - initially sidebar is not collapsed
+  constructor() { }
+  toggleSidebar(): void {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed; // Toggle the boolean value
+    console.log('Sidebar Collapsed:', this.isSidebarCollapsed); 
+  }
 
 }

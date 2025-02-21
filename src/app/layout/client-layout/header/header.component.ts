@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  @Input() toggleSidebar!: () => void; // Add this Input property, type is function
 
-  toggleSidebar() {
-    // Will be implemented later to toggle sidebar visibility
-    console.log('Toggle Sidebar Icon Clicked');
-  }
+  // toggleSidebar() {
+  //   // Will be implemented later to toggle sidebar visibility
+  //   console.log('Toggle Sidebar Icon Clicked');
+  // }
 
   toggleNotifications() {
     // Will be implemented later to show/hide notifications

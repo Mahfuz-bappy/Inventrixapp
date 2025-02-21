@@ -11,6 +11,7 @@ import { EmployeeLeaveComponent } from './admin/employee-leave/employee-leave.co
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: '/storeboard', pathMatch: 'full' },
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
   {
     path: '',
