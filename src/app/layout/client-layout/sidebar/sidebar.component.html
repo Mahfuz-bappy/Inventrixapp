@@ -1,6 +1,6 @@
 <div class="sidebar-section">
   <aside class="sidebar" [class.collapsed]="isSidebarCollapsed" >
-    <ul class="sidebar-nav">
+    <!-- <ul class="sidebar-nav">
       <li class="sidebar-nav-item">
         <a  class="sidebar-nav-link">
           <i class="bi bi-house-fill sidebar-nav-icon"></i>
@@ -34,6 +34,32 @@
           <span class="sidebar-nav-text">Settings</span>
         </a>
       </li>
+    </ul> -->
+  
+  
+  
+    <ul class="sidebar-nav">
+      <li *ngFor="let item of menuItems" class="sidebar-nav-item" [class.has-submenu]="item.submenu">
+        <a class="sidebar-nav-link"
+           [routerLink]="item.route"   
+           (click)="item.submenu ? toggleSubMenu(item.id) : ''"
+           [class.active]="isSubMenuOpen(item.id)">
+          <i class="sidebar-nav-icon" [class]="item.icon"></i>
+          <span class="sidebar-nav-text">{{ item.label }}</span>
+          <i *ngIf="item.submenu" class="bi bi-chevron-down sidebar-nav-submenu-indicator"></i>
+        </a>
+        <ul *ngIf="isSubMenuOpen(item.id)" class="sidebar-nav-submenu">
+          <li *ngFor="let subItem of item.submenu" class="sidebar-nav-item">
+            <a class="sidebar-nav-link" [routerLink]="subItem.route"> 
+              <span class="sidebar-nav-text">{{ subItem.label }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+
     </ul>
+  
   </aside>
 </div>

@@ -9,7 +9,8 @@
         <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed"></app-sidebar>
       </aside>
       <main class="col-md-9" [class.col-md-9]="!isSidebarCollapsed" [class.col-md-11]="isSidebarCollapsed">
-        <app-main></app-main>
+        <!-- <app-main></app-main> -->
+        <router-outlet></router-outlet>  
       </main>
     </div>
     <div class="row">

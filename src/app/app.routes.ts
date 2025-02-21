@@ -9,6 +9,8 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { EmployeeComponent } from './admin/employee/employee.component';
 import { EmployeeLeaveComponent } from './admin/employee-leave/employee-leave.component';
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
+import { UsersComponent } from './layout/client-layout/users/users.component';
+import { SettingsComponent } from './layout/client-layout/settings/settings.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/storeboard', pathMatch: 'full' },
@@ -35,7 +37,11 @@ export const routes: Routes = [
   { 
     path:'',component:ClientLayoutComponent,
     children:[
-    {path: 'storeboard', component: ClientdashboardComponent}
+    {path: 'storeboard', component: ClientdashboardComponent},
+    { path: 'dashboard', component: ClientdashboardComponent }, // Route for /dashboard
+    { path: 'users', component: UsersComponent },         // Route for /users
+    { path: 'settings', component: SettingsComponent },   // Route for /settings
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect r
     ]
 
   },

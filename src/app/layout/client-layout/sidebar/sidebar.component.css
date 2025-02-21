@@ -75,11 +75,11 @@
     padding: 0;
     margin: 0;
     background-color: #f8f9fa; /* Lighter background for submenu */
-    display: none;
+    /* display: none; */
     overflow: hidden; /*  <--- Add to clip content during animation */
     height: 0;       /*  <--- Initial height: hidden */
     opacity: 0;      /*  <--- Initial opacity: fully transparent */
-    transition: height 0.7s ease-in-out, opacity 0.7s ease-in-out; /*  <--- Add transitions */
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out; /*  <--- Add transitions */
   
 
 
@@ -89,6 +89,19 @@
     display: block;   /*  <--- ADD display: block; to show submenu */
     height: auto;    /*  <--- Expand to auto height to show content */
     opacity: 1;     /*  <--- Make fully opaque when expanded */
+  }
+
+
+  .sidebar-nav-item.has-submenu > .sidebar-nav-link.active + .sidebar-nav-submenu { 
+    /* Corrected selector */
+    display: block;
+    height: auto;
+    opacity: 1;
+  }
+
+
+  .sidebar-nav-item.has-submenu > .sidebar-nav-link.active > .sidebar-nav-submenu-indicator { /* Corrected selector */
+    transform: rotate(180deg);
   }
   
   /* Style for submenu items */
